@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulator UI Redirect</title>
+  </head>
+  <body>
+    <h1>Simulator UI</h1>
+    <p id="status">Redirecting to Streamlit app…</p>
+    <p>
+      If you are not redirected, open
+      <a id="streamlit-link" href="https://dgrkeqbdszcqxhzy92u93v.streamlit.app/" rel="noopener noreferrer">https://dgrkeqbdszcqxhzy92u93v.streamlit.app/</a>.
+    </p>
+
+    <script>
+      const target = "https://dgrkeqbdszcqxhzy92u93v.streamlit.app/";
+      window.location.replace(target);
+    </script>
+  </body>
+</html>
