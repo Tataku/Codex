@@ -67,12 +67,3 @@ Vercel does not host Streamlit runtime directly. Use `vercel-landing/index.html`
 1. Deploy `vercel-landing` as static site on Vercel.
 2. Replace `STREAMLIT_APP_URL` in `vercel-landing/index.html` with your deployed Streamlit URL.
 3. Re-deploy Vercel landing.
-
-
-### Vercel 404 troubleshooting
-If Vercel shows `404: NOT_FOUND` after deploy, it usually means the project root has no default route.
-This repo includes `vercel.json` to rewrite all routes to `vercel-landing/index.html`.
-
-- Ensure Vercel project root is the repo root (not a subfolder).
-- Re-deploy after merging `vercel.json`.
-- Keep updating `STREAMLIT_APP_URL` inside `vercel-landing/index.html` with your Streamlit app URL.
