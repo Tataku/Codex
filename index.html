@@ -4,14 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Simulator UI Redirect</title>
-    <meta http-equiv="refresh" content="0; url=https://dgrkeqbdszcqxhzy92u93v.streamlit.app/" />
-    <script>
-      window.location.replace("https://dgrkeqbdszcqxhzy92u93v.streamlit.app/");
-    </script>
   </head>
   <body>
     <h1>Simulator UI</h1>
-    <p>Redirecting to Streamlit app…</p>
-    <p>If you are not redirected, open <a href="https://dgrkeqbdszcqxhzy92u93v.streamlit.app/">https://dgrkeqbdszcqxhzy92u93v.streamlit.app/</a>.</p>
+    <p id="status">Redirecting to Streamlit app…</p>
+    <p>
+      If you are not redirected, open
+      <a id="streamlit-link" href="https://dgrkeqbdszcqxhzy92u93v.streamlit.app/" rel="noopener noreferrer">https://dgrkeqbdszcqxhzy92u93v.streamlit.app/</a>.
+    </p>
+
+    <script>
+      const target = "https://dgrkeqbdszcqxhzy92u93v.streamlit.app/";
+      window.location.replace(target);
+    </script>
   </body>
 </html>

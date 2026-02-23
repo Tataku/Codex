@@ -1,14 +1,16 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/",
-      "destination": "/vercel-landing/index.html"
+      "source": "/STREAMLIT_APP_URL",
+      "destination": "https://dgrkeqbdszcqxhzy92u93v.streamlit.app/",
+      "permanent": false
     },
     {
       "source": "/(.*)",
-      "destination": "/vercel-landing/index.html"
+      "destination": "https://dgrkeqbdszcqxhzy92u93v.streamlit.app/",
+      "permanent": false
     }
   ]
 }

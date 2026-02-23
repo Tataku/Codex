@@ -8,7 +8,7 @@ import datetime as dt
 import sys
 from pathlib import Path
 
-from mc_core import SimulationConfig, compute_ma_features, load_observations
+from sim.mc_core import SimulationConfig, compute_ma_features, load_observations
 
 # local bool parser to keep CLI behavior explicit
 def parse_bool(raw: str) -> bool:
@@ -19,7 +19,7 @@ def parse_bool(raw: str) -> bool:
         return False
     raise argparse.ArgumentTypeError(f"Invalid boolean value: {raw}")
 
-from mc_core import (
+from sim.mc_core import (
     run_backtest_collect,
     simulate_distribution_batches,
     write_csv,
@@ -71,7 +71,7 @@ def run_simulate(args: argparse.Namespace) -> None:
     checkpoints = sorted({7, 30, 90, 180, 365, sim_cfg.horizon_days})
     checkpoints = [c for c in checkpoints if c <= sim_cfg.horizon_days]
     rows = []
-    from mc_core import percentile
+    from sim.mc_core import percentile
     for day in checkpoints:
         prices = [p[day] for p in paths]
         rows.append({"day": day, "price_p05": percentile(prices, 0.05), "price_p50": percentile(prices, 0.50), "price_p95": percentile(prices, 0.95)})

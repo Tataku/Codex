@@ -1,7 +1,7 @@
 import datetime as dt
 import random
 
-from mc_core import (
+from sim.mc_core import (
     DayFeature,
     Observation,
     SimulationConfig,

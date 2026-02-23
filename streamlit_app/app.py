@@ -4,11 +4,16 @@ import csv
 import datetime as dt
 import io
 import json
+import sys
 from pathlib import Path
 
 import streamlit as st
 
-from mc_core import (
+ROOT_DIR = Path(__file__).resolve().parents[1]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
+from sim.mc_core import (
     SimulationConfig,
     compute_ma_features,
     load_observations,

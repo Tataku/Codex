@@ -2,7 +2,7 @@
 
 ## CLI (SSOT engine)
 
-Core simulation/backtest logic lives in `mc_core.py`, and both the CLI and Streamlit UI call this module.
+Core simulation/backtest logic lives in `sim/mc_core.py`, and both the CLI and Streamlit UI call this module.
 
 ### Simulate
 
@@ -62,8 +62,18 @@ UI features:
 3. Set Python dependencies from `requirements.txt`.
 
 ### Vercel integration (redirect only)
-Vercel does not host Streamlit runtime directly. Use `vercel-landing/index.html` as a static redirect page.
+Vercel does not host Streamlit runtime directly. This repo serves a root `index.html` redirect page.
 
-1. Deploy `vercel-landing` as static site on Vercel.
-2. Replace `STREAMLIT_APP_URL` in `vercel-landing/index.html` with your deployed Streamlit URL.
-3. Re-deploy Vercel landing.
+1. Deploy from repository root.
+2. Keep `vercel.json` at repository root so redirects are applied.
+3. Redirect target is set to your provided URL: `https://dgrkeqbdszcqxhzy92u93v.streamlit.app/`.
+4. Re-deploy.
+
+### Vercel 404 troubleshooting
+If Vercel shows `404: NOT_FOUND` after deploy, it usually means the project root has no default route configured.
+This repo includes `vercel.json` to redirect all routes (including `/STREAMLIT_APP_URL`) directly to Streamlit.
+
+- Ensure Vercel project root is the repo root (not a subfolder).
+- Ensure `vercel.json` is included in the deployed commit.
+- Re-deploy after merge conflict resolution.
+- Keep the Streamlit URL in `index.html` updated if the deployment URL changes.
