@@ -1,0 +1,16 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/STREAMLIT_APP_URL",
+      "destination": "https://dgrkeqbdszcqxhzy92u93v.streamlit.app/",
+      "permanent": false
+    },
+    {
+      "source": "/(.*)",
+      "destination": "https://dgrkeqbdszcqxhzy92u93v.streamlit.app/",
+      "permanent": false
+    }
+  ]
+}
