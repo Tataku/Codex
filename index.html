@@ -4,33 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Simulator UI Redirect</title>
+    <meta http-equiv="refresh" content="0; url=STREAMLIT_APP_URL" />
+    <script>
+      window.location.replace("STREAMLIT_APP_URL");
+    </script>
   </head>
   <body>
     <h1>Simulator UI</h1>
-    <p id="status">Preparing redirect…</p>
-    <p>
-      If you are not redirected, open
-      <a id="streamlit-link" href="#" rel="noopener noreferrer">the Streamlit app</a>.
-    </p>
-
-    <script>
-      const target = "https://dgrkeqbdszcqxhzy92u93v.streamlit.app/";
-      const status = document.getElementById("status");
-      const link = document.getElementById("streamlit-link");
-
-      const placeholderPresent = target.includes("STREAMLIT_APP_URL");
-      const absoluteUrl = /^https?:\/\//i.test(target);
-
-      if (placeholderPresent || !absoluteUrl) {
-        status.textContent =
-          "Redirect is not configured yet. Set STREAMLIT_APP_URL in index.html to your full https:// Streamlit URL.";
-        link.textContent = "(configure STREAMLIT_APP_URL first)";
-      } else {
-        link.href = target;
-        link.textContent = target;
-        status.textContent = "Redirecting to Streamlit app…";
-        window.location.replace(target);
-      }
-    </script>
+    <p>Redirecting to Streamlit app…</p>
+    <p>If you are not redirected, open <a href="STREAMLIT_APP_URL">STREAMLIT_APP_URL</a>.</p>
   </body>
 </html>
