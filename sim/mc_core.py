@@ -129,6 +129,13 @@ def load_observations(xlsx_path: str | Path) -> List[Observation]:
     return to_observations(load_xlsx_rows(Path(xlsx_path)))
 
 
+def resolve_as_of_idx(observations: Sequence[Observation], as_of_date: dt.date) -> Optional[int]:
+    for i in range(len(observations) - 1, -1, -1):
+        if observations[i].date <= as_of_date:
+            return i
+    return None
+
+
 def compute_ma_features(observations: Sequence[Observation], ma_window: int) -> List[DayFeature]:
     if ma_window <= 0:
         raise ValueError("ma_window must be > 0")
