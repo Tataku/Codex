@@ -8,7 +8,7 @@ import datetime as dt
 import sys
 from pathlib import Path
 
-from sim.mc_core import SimulationConfig, compute_ma_features, load_observations
+from sim.mc_core import SimulationConfig, compute_ma_features, load_observations, resolve_as_of_idx
 
 # local bool parser to keep CLI behavior explicit
 def parse_bool(raw: str) -> bool:
@@ -47,8 +47,8 @@ def run_simulate(args: argparse.Namespace) -> None:
     if len(features) < 400:
         raise SystemExit("Not enough observations")
 
-    as_of = _parse_date(args.as_of_date) or features[-1].obs.date
-    as_of_idx = next((i for i in range(len(features) - 1, -1, -1) if features[i].obs.date <= as_of), None)
+    as_of = _parse_date(args.as_of_date) or observations[-1].date
+    as_of_idx = resolve_as_of_idx(observations, as_of)
     if as_of_idx is None:
         raise SystemExit(f"No data on or before {as_of.isoformat()}")
 
