@@ -269,8 +269,10 @@ def evaluate_at_index(
     rng: random.Random,
     ma_filter_mode: str,
     train_lookback_days: int,
+    require_forward: bool = True,
 ) -> Optional[Dict[str, object]]:
-    if index + sim_cfg.horizon_days >= len(features):
+    has_forward_window = index + sim_cfg.horizon_days < len(features)
+    if require_forward and not has_forward_window:
         return None
     start = 0
     if train_lookback_days > 0:
@@ -297,7 +299,9 @@ def evaluate_at_index(
     paths = simulate_paths(anchor.obs.close, pool, sim_cfg, rng)
     prediction = summarize_returns(paths, sim_cfg.horizon_days)
     expected_dd = statistics.fmean(calc_drawdown(p) for p in paths)
-    realized = (features[index + sim_cfg.horizon_days].obs.close / anchor.obs.close) - 1.0
+    realized = None
+    if has_forward_window:
+        realized = (features[index + sim_cfg.horizon_days].obs.close / anchor.obs.close) - 1.0
     return {
         "anchor": anchor,
         "pool": pool,
@@ -328,7 +332,7 @@ def simulate_distribution_batches(
         min_bucket_samples=sim_cfg.min_bucket_samples,
         seed=seed,
     )
-    state = evaluate_at_index(features, as_of_idx, eval_cfg, rng, ma_filter_mode, 0)
+    state = evaluate_at_index(features, as_of_idx, eval_cfg, rng, ma_filter_mode, 0, require_forward=False)
     if state is None:
         raise RuntimeError("Failed to evaluate state")
 
